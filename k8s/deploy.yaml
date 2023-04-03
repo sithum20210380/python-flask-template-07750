@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pyflask
+  labels:
+    app: pyflask
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pyflask
+  template:
+    metadata:
+      labels:
+        app: pyflask
+    spec:
+      containers:
+      - name: pyflask
+        image: ghcr.io/${IMAGE_NAME}:main
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: ".1"
+            memory: ".1Gi"
+          limits:
+            cpu: ".1"
+            memory: ".1Gi"
+        ports:
+        - containerPort: 8080
